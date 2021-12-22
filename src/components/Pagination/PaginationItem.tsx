@@ -3,9 +3,14 @@ import { Button, useColorModeValue } from "@chakra-ui/react"
 interface PaginationItemProps {
     number: number;
     isCurrentPage?: boolean;
+    onPageChange: (page: number) => void;
 }
 
-export function PaginationItem({isCurrentPage = false, number}: PaginationItemProps) {
+export function PaginationItem({
+    isCurrentPage = false, 
+    onPageChange, 
+    number
+}: PaginationItemProps) {
     const bg = useColorModeValue('gray.100', 'gray.700');
 
     if (isCurrentPage) {
@@ -35,6 +40,7 @@ export function PaginationItem({isCurrentPage = false, number}: PaginationItemPr
             _hover={{
                 bg: "gray.500"
             }}
+            onClick={() => onPageChange(number)}
         >
             {number}
         </Button>
